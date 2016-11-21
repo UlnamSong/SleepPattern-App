@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -8,10 +9,81 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.isteam.sleepapp.MainActivity">
+    tools:context="com.isteam.sleepapp.MainActivity"
+    android:background="@color/colorWhite">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:srcCompat="@drawable/sleeplogo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView"
+        android:layout_marginTop="70dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            app:srcCompat="@drawable/main_button1"
+            android:id="@+id/imageButton"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:scaleType="fitXY"
+            android:layout_height="95dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            app:srcCompat="@drawable/main_button2"
+            android:id="@+id/imageButton2"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:scaleType="fitXY"
+            android:layout_height="95dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            app:srcCompat="@drawable/main_button3"
+            android:id="@+id/imageButton3"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:scaleType="fitXY"
+            android:layout_height="95dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            app:srcCompat="@drawable/main_butotn4"
+            android:id="@+id/imageButton4"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:scaleType="fitXY"
+            android:layout_height="95dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp" />
+
+    </LinearLayout>
 </RelativeLayout>
