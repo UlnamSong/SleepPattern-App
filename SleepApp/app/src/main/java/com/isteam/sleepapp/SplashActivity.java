@@ -74,8 +74,6 @@ public class SplashActivity extends ActionBarActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                //imageView.setImageResource( resID );
-                //imageView.startAnimation( fadeInAnimation );
                 checkPermission();
             }
         });
