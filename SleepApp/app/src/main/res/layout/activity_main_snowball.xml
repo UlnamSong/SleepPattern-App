@@ -13,29 +13,23 @@
     android:background="@color/colorWhite"
     android:padding="0dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-
     <ImageView
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         app:srcCompat="@drawable/sleeplogo"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/imageView"
-        android:scaleType="center"
-        android:layout_width="match_parent"
-        android:cropToPadding="false"
-        android:layout_above="@+id/bottom_layout" />
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/bottom_layout">
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:orientation="horizontal"
