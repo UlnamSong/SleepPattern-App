@@ -31,8 +31,8 @@ public class ConditionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadTypeface();
-        setContentView(R.layout.activity_condition);
+        InitializeActivity.loadTypeface(ConditionActivity.this, TYPEFACE_NAME, TYPEFACE_NAME_BOLD, TYPEFACE_NAME_EXBOLD);
+        InitializeActivity.setContentView(ConditionActivity.this, R.layout.activity_condition);
 
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvTemp = (TextView) findViewById(R.id.tv_temptitle);
