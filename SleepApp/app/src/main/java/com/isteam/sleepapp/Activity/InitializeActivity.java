@@ -1,4 +1,4 @@
-package com.isteam.sleepapp;
+package com.isteam.sleepapp.Activity;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.isteam.sleepapp;
+package com.isteam.sleepapp.Activity;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.isteam.sleepapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
         button2 = (ImageButton) findViewById(R.id.ib_light);
         button3 = (ImageButton) findViewById(R.id.ib_temp);
         button4 = (ImageButton) findViewById(R.id.ib_sleep);
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, LightActivity.class));
+                overridePendingTransition(R.anim.fade, R.anim.hold);
+            }
+        });
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override

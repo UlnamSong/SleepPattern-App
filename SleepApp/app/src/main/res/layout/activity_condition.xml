@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.isteam.sleepapp.ConditionActivity"
+    tools:context="com.isteam.sleepapp.Activity.ConditionActivity"
     android:background="@color/colorWhite"
     android:padding="0dp">
 
@@ -235,7 +235,8 @@
                         app:cpv_innerContourColor="#00FFFFFF"
                         android:background="#00FFFFFF"
                         app:cpv_innerContourSize="0dp"
-                        app:cpv_outerContourSize="0dp">
+                        app:cpv_outerContourSize="0dp"
+                        android:id="@+id/temp_graph">
 
                     </at.grabner.circleprogress.CircleProgressView>
 
@@ -320,7 +321,8 @@
                         app:cpv_innerContourColor="#00FFFFFF"
                         android:background="#00FFFFFF"
                         app:cpv_innerContourSize="0dp"
-                        app:cpv_outerContourSize="0dp">
+                        app:cpv_outerContourSize="0dp"
+                        android:id="@+id/humid_graph">
 
                     </at.grabner.circleprogress.CircleProgressView>
 
@@ -414,7 +416,8 @@
                         app:cpv_innerContourColor="#00FFFFFF"
                         android:background="#00FFFFFF"
                         app:cpv_innerContourSize="0dp"
-                        app:cpv_outerContourSize="0dp">
+                        app:cpv_outerContourSize="0dp"
+                        android:id="@+id/illum_graph">
 
                     </at.grabner.circleprogress.CircleProgressView>
 
@@ -496,7 +499,8 @@
                         app:cpv_innerContourColor="#00FFFFFF"
                         android:background="#00FFFFFF"
                         app:cpv_innerContourSize="0dp"
-                        app:cpv_outerContourSize="0dp">
+                        app:cpv_outerContourSize="0dp"
+                        android:id="@+id/noise_graph">
 
                     </at.grabner.circleprogress.CircleProgressView>
 
