@@ -1,4 +1,4 @@
-package com.isteam.sleepapp;
+package com.isteam.sleepapp.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import com.isteam.sleepapp.R;
 
 public class SplashActivity extends ActionBarActivity {
 
