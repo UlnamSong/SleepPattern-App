@@ -51,15 +51,19 @@ public class LightActivity extends AppCompatActivity {
                 switch(i) {
                     case 0:
                         lightImage.setImageResource(R.drawable.light_i0);
+                        requestLightValToPCB(i);
                         break;
                     case 1:
                         lightImage.setImageResource(R.drawable.light_i1);
+                        requestLightValToPCB(i);
                         break;
                     case 2:
                         lightImage.setImageResource(R.drawable.light_i2);
+                        requestLightValToPCB(i);
                         break;
                     case 3:
                         lightImage.setImageResource(R.drawable.light_i3);
+                        requestLightValToPCB(i);
                         break;
                 }
             }
@@ -87,6 +91,12 @@ public class LightActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    // 이 메소드를 사용하여 PCB에 명령보낼 수 있음 - 혹시 몰라 만들어 놓음 다른 메소드 구현해서 사용 가능
+    private void requestLightValToPCB(int value) {
+        // 0, 1, 2, 3 : Light Level
+
     }
 
     private void setLightProgress(int i) {
