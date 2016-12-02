@@ -14,7 +14,6 @@ import com.isteam.sleepapp.R;
 
 public class SplashActivity extends ActionBarActivity {
 
-    final Handler handler = new Handler();
     private ImageView iv_toplogo    = null;
     private ImageView iv_bottomlogo = null;
 

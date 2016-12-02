@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.isteam.sleepapp.Module.TypefaceUtil;
 import com.isteam.sleepapp.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,13 +20,11 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton button2 = null;
     private ImageButton button3 = null;
     private ImageButton button4 = null;
-    private static final String TYPEFACE_NAME = "fonts/NanumSquareOTFRegular.otf";
-    private Typeface typeface = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadTypeface();
+        TypefaceUtil.loadTypeface(MainActivity.this);
         setContentView(R.layout.activity_main);
 
         button1 = (ImageButton) findViewById(R.id.ib_connect);
@@ -32,11 +32,19 @@ public class MainActivity extends AppCompatActivity {
         button3 = (ImageButton) findViewById(R.id.ib_temp);
         button4 = (ImageButton) findViewById(R.id.ib_sleep);
 
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Bluetooth Connect", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, LightActivity.class));
                 overridePendingTransition(R.anim.fade, R.anim.hold);
+                finish();
             }
         });
 
@@ -45,26 +53,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, ConditionActivity.class));
                 overridePendingTransition(R.anim.fade, R.anim.hold);
+                finish();
             }
         });
-    }
 
-    private void loadTypeface(){
-        if(typeface==null)
-            typeface = Typeface.createFromAsset(getAssets(), TYPEFACE_NAME);
-    }
-
-    @Override
-    public void setContentView(int viewId) {
-        View view = LayoutInflater.from(this).inflate(viewId, null);
-        ViewGroup group = (ViewGroup)view;
-        int childCnt = group.getChildCount();
-        for(int i=0; i<childCnt; i++){
-            View v = group.getChildAt(i);
-            if(v instanceof TextView){
-                ((TextView)v).setTypeface(typeface);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SleepMonitorActivity.class));
+                overridePendingTransition(R.anim.fade, R.anim.hold);
+                finish();
             }
-        }
-        super.setContentView(view);
+        });
     }
 }

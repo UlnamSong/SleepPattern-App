@@ -2,27 +2,24 @@ package com.isteam.sleepapp.Activity;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.isteam.sleepapp.Module.TypefaceUtil;
 import com.isteam.sleepapp.R;
 
 import at.grabner.circleprogress.CircleProgressView;
 
 public class ConditionActivity extends AppCompatActivity {
-
-    private static String TYPEFACE_NAME = "fonts/NanumSquareOTFRegular.otf";
-    private static String TYPEFACE_NAME_BOLD = "fonts/NanumSquareOTFBold.otf";
-    private static String TYPEFACE_NAME_EXBOLD = "fonts/NanumSquareOTFExtraBold.otf";
-
-    private Typeface typeface = null;
-    private Typeface typeface_b= null;
-    private Typeface typeface_eb = null;
 
     private TextView tvTitle = null;
     private TextView tvTemp = null;
@@ -53,12 +50,38 @@ public class ConditionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        InitializeActivity.loadTypeface(ConditionActivity.this, TYPEFACE_NAME, TYPEFACE_NAME_BOLD, TYPEFACE_NAME_EXBOLD);
-        InitializeActivity.setContentView(ConditionActivity.this, R.layout.activity_condition);
+        TypefaceUtil.loadTypeface(ConditionActivity.this);
+        setContentView(R.layout.activity_condition_snowball);
+
+        // Lollipop 이상 버전에서의 상단바 아이콘 색상 문제
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            // Do Nothing
+        } else {
+            // StatusBar Set
+            Window window = getWindow();
+
+            // clear FLAG_TRANSLUCENT_STATUS flag:
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+            // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+            // finally change the color
+            window.setStatusBarColor(getResources().getColor(R.color.colorBackgroundSnowball));
+        }
 
         setContent();
         setDataToGraph();
 
+        // Bluetooth Button
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ConditionActivity.this, "Bluetooth Connect", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Light Button
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,10 +91,11 @@ public class ConditionActivity extends AppCompatActivity {
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        // Sleep Monitor Button
+        button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ConditionActivity.this, ConditionActivity.class));
+                startActivity(new Intent(ConditionActivity.this, SleepMonitorActivity.class));
                 overridePendingTransition(R.anim.fade, R.anim.hold);
                 finish();
             }
@@ -85,7 +109,7 @@ public class ConditionActivity extends AppCompatActivity {
         illumGraph.setValue(currentIllum);
         noiseGraph.setValue(currentNoise);
 
-        tvTempVal.setText(currentTemp + " ˚C");
+        tvTempVal.setText(currentTemp + " ℃");
         tvHumidVal.setText(currentHumid + " %");
         tvBrightVal.setText(currentIllum + " lux");
         tvSoundVal.setText(currentNoise + " dB");
@@ -93,29 +117,31 @@ public class ConditionActivity extends AppCompatActivity {
 
     private void setContent() {
         tvTitle = (TextView) findViewById(R.id.tv_title);
+        tvTitle.setTypeface(TypefaceUtil.typeface_1);
+
         tvTemp = (TextView) findViewById(R.id.tv_temptitle);
-        tvTemp.setTypeface(typeface);
+        tvTemp.setTypeface(TypefaceUtil.typeface_2);
 
         tvTempVal = (TextView) findViewById(R.id.tv_tempVal);
-        tvTempVal.setTypeface(typeface_b);
+        tvTempVal.setTypeface(TypefaceUtil.typeface_4);
 
         tvHumid = (TextView) findViewById(R.id.tv_humidtitle);
-        tvHumid.setTypeface(typeface);
+        tvHumid.setTypeface(TypefaceUtil.typeface_2);
 
         tvHumidVal = (TextView) findViewById(R.id.tv_humidVal);
-        tvHumidVal.setTypeface(typeface_b);
+        tvHumidVal.setTypeface(TypefaceUtil.typeface_4);
 
         tvBright = (TextView) findViewById(R.id.tv_brighttitle);
-        tvBright.setTypeface(typeface);
+        tvBright.setTypeface(TypefaceUtil.typeface_2);
 
         tvBrightVal = (TextView) findViewById(R.id.tv_brightVal);
-        tvBrightVal.setTypeface(typeface_b);
+        tvBrightVal.setTypeface(TypefaceUtil.typeface_4);
 
         tvSound = (TextView) findViewById(R.id.tv_soundtitle);
-        tvSound.setTypeface(typeface);
+        tvSound.setTypeface(TypefaceUtil.typeface_2);
 
         tvSoundVal = (TextView) findViewById(R.id.tv_soundVal);
-        tvSoundVal.setTypeface(typeface_b);
+        tvSoundVal.setTypeface(TypefaceUtil.typeface_4);
 
         button1 = (ImageButton) findViewById(R.id.imageButton);
         button2 = (ImageButton) findViewById(R.id.imageButton2);
@@ -135,31 +161,5 @@ public class ConditionActivity extends AppCompatActivity {
 
         noiseGraph = (CircleProgressView) findViewById(R.id.noise_graph);
         noiseGraph.setMaxValue(100.0f);
-    }
-
-    private void loadTypeface() {
-
-        if(typeface == null)
-            typeface = Typeface.createFromAsset(getAssets(), TYPEFACE_NAME);
-
-        if(typeface_b == null)
-            typeface_b = Typeface.createFromAsset(getAssets(), TYPEFACE_NAME_BOLD);
-
-        if(typeface_eb == null)
-            typeface_eb = Typeface.createFromAsset(getAssets(), TYPEFACE_NAME_EXBOLD);
-    }
-
-    @Override
-    public void setContentView(int viewId) {
-        View view = LayoutInflater.from(this).inflate(viewId, null);
-        ViewGroup group = (ViewGroup)view;
-        int childCnt = group.getChildCount();
-        for(int i=0; i<childCnt; i++){
-            View v = group.getChildAt(i);
-            if(v instanceof TextView){
-                ((TextView)v).setTypeface(typeface);
-            }
-        }
-        super.setContentView(view);
     }
 }
