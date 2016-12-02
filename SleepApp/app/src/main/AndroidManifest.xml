@@ -23,10 +23,14 @@
         <activity
             android:name=".Activity.ConditionActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".Activity.LightActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".Activity.SleepActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity
+            android:name=".Activity.LightActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Activity.SleepActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".Activity.SleepMonitorActivity" />
+        <activity android:name=".Activity.SleepMonitorDetailActivity"></activity>
     </application>
 
 </manifest>

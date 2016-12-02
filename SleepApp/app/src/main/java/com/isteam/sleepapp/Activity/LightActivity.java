@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.isteam.sleepapp.Module.TypefaceUtil;
 import com.isteam.sleepapp.R;
 
 import at.grabner.circleprogress.CircleProgressView;
@@ -20,6 +22,18 @@ public class LightActivity extends AppCompatActivity {
     private ImageButton button3 = null;
     private ImageButton button4 = null;
 
+    // SeekBar
+    private TextView textView6 = null;
+    private TextView textView7 = null;
+    private TextView textView8 = null;
+    private TextView textView9 = null;
+
+    private TextView tvTitle = null;
+    private TextView textView = null;
+
+    private TextView myLightValue = null;
+    private TextView myLightLux = null;
+
     private CircleProgressView illumGraph = null;
 
     private SeekBar lightSeekBar = null;
@@ -30,12 +44,36 @@ public class LightActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TypefaceUtil.loadTypeface(LightActivity.this);
+
         setContentView(R.layout.activity_light);
 
         button1 = (ImageButton) findViewById(R.id.imageButton);
         button2 = (ImageButton) findViewById(R.id.imageButton2);
         button3 = (ImageButton) findViewById(R.id.imageButton3);
         button4 = (ImageButton) findViewById(R.id.imageButton4);
+
+        textView6 = (TextView) findViewById(R.id.textView6);
+        textView7 = (TextView) findViewById(R.id.textView7);
+        textView8 = (TextView) findViewById(R.id.textView8);
+        textView9 = (TextView) findViewById(R.id.textView9);
+
+        textView6.setTypeface(TypefaceUtil.typeface_1);
+        textView7.setTypeface(TypefaceUtil.typeface_1);
+        textView8.setTypeface(TypefaceUtil.typeface_1);
+        textView9.setTypeface(TypefaceUtil.typeface_1);
+
+        myLightLux = (TextView) findViewById(R.id.tvLightLux);
+        myLightValue = (TextView) findViewById(R.id.tvLightValue);
+
+        myLightValue.setTypeface(TypefaceUtil.typeface_1);
+        myLightLux.setTypeface(TypefaceUtil.typeface_1);
+
+        tvTitle = (TextView) findViewById(R.id.tv_title);
+        textView = (TextView) findViewById(R.id.textView);
+
+        tvTitle.setTypeface(TypefaceUtil.typeface_1);
+        textView.setTypeface(TypefaceUtil.typeface_1);
 
         lightImage = (ImageView) findViewById(R.id.ivLightStatus);
         lightSeekBar = (SeekBar) findViewById(R.id.light_seekBar);
@@ -50,19 +88,35 @@ public class LightActivity extends AppCompatActivity {
                 //Toast.makeText(LightActivity.this, "i : " + i, Toast.LENGTH_SHORT).show();
                 switch(i) {
                     case 0:
-                        lightImage.setImageResource(R.drawable.light_i0);
+                        // ISTeam
+                        //lightImage.setImageResource(R.drawable.light_i0);
+
+                        // Snowball
+                        lightImage.setImageResource(R.drawable.light0_snowball);
                         requestLightValToPCB(i);
                         break;
                     case 1:
-                        lightImage.setImageResource(R.drawable.light_i1);
+                        // ISTeam
+                        //lightImage.setImageResource(R.drawable.light_i1);
+
+                        // Snowball
+                        lightImage.setImageResource(R.drawable.light1_snowball);
                         requestLightValToPCB(i);
                         break;
                     case 2:
-                        lightImage.setImageResource(R.drawable.light_i2);
+                        // ISTeam
+                        //lightImage.setImageResource(R.drawable.light_i2);
+
+                        // Snowball
+                        lightImage.setImageResource(R.drawable.light2_snowball);
                         requestLightValToPCB(i);
                         break;
                     case 3:
-                        lightImage.setImageResource(R.drawable.light_i3);
+                        // ISTeam
+                        //lightImage.setImageResource(R.drawable.light_i3);
+
+                        // Snowball
+                        lightImage.setImageResource(R.drawable.light3_snowball);
                         requestLightValToPCB(i);
                         break;
                 }
