@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:id="@+id/tv_title"
         android:textColor="@color/colorPrimarySnowball"
-        android:text="@string/condition_title_snowball"
+        android:text="My Conditions"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:textSize="16sp"
@@ -41,8 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/bottom_layout"
-        android:background="#00343434">
+        android:id="@+id/bottom_layout">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -58,37 +57,37 @@
                 app:srcCompat="@drawable/snowball_button1"
                 android:id="@+id/imageButton"
                 android:layout_weight="1"
-                android:background="@drawable/snowball_imagebutton_bg"
+                android:background="@color/colorBackgroundSnowball"
                 android:scaleType="fitXY"
                 android:layout_height="95dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:tint="#737373"
-                android:src="@drawable/snowball_button1" />
+                android:src="@drawable/snowball_button1"
+                android:tint="@android:color/darker_gray" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 app:srcCompat="@drawable/snowball_button2"
                 android:id="@+id/imageButton2"
                 android:layout_weight="1"
-                android:background="@drawable/snowball_imagebutton_bg"
+                android:background="@color/colorBackgroundSnowball"
                 android:scaleType="fitXY"
                 android:layout_height="95dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:tint="#737373"
-                android:src="@drawable/snowball_button2" />
+                android:src="@drawable/snowball_button2"
+                android:tint="@android:color/darker_gray" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 app:srcCompat="@drawable/snowball_button3"
                 android:id="@+id/imageButton3"
                 android:layout_weight="1"
-                android:background="@drawable/snowball_imagebutton_bg"
+                android:background="@color/colorBackgroundSnowball"
                 android:scaleType="fitXY"
                 android:layout_height="95dp"
                 android:paddingLeft="5dp"
@@ -104,15 +103,15 @@
                 app:srcCompat="@drawable/snowball_button4"
                 android:id="@+id/imageButton4"
                 android:layout_weight="1"
-                android:background="@drawable/snowball_imagebutton_bg"
+                android:background="@color/colorBackgroundSnowball"
                 android:scaleType="fitXY"
                 android:layout_height="95dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:tint="#737373"
-                android:src="@drawable/snowball_button4" />
+                android:src="@drawable/snowball_button4"
+                android:tint="@android:color/darker_gray" />
 
         </LinearLayout>
 
@@ -207,7 +206,7 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:text="@string/temp_curtemp_snowball"
+                    android:text="Temperature"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:id="@+id/tv_temptitle"
@@ -226,9 +225,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cpv_blockCount="100"
-                        app:cpv_blockScale="0.6"
+                        app:cpv_blockScale="0.7"
                         app:cpv_barColor="@color/colorPrimarySnowball"
-                        app:cpv_rimColor="@color/colorGraphBackSnowball"
+                        app:cpv_rimColor="@color/colorGraphBG"
                         app:cpv_rimWidth="6dp"
                         app:cpv_barWidth="6dp"
                         android:paddingLeft="7dp"
@@ -240,7 +239,8 @@
                         app:cpv_innerContourColor="#00FFFFFF"
                         android:background="#00FFFFFF"
                         app:cpv_innerContourSize="0dp"
-                        app:cpv_outerContourSize="0dp">
+                        app:cpv_outerContourSize="0dp"
+                        android:id="@+id/temp_graph">
 
                     </at.grabner.circleprogress.CircleProgressView>
 
@@ -273,7 +273,7 @@
                 android:orientation="vertical"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorText"
+                android:background="@color/colorPrimarySnowball"
                 android:layout_marginTop="15dp"></LinearLayout>
 
             <!-- 현재 습도 -->
@@ -293,7 +293,7 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:text="@string/temp_curhumi_snowball"
+                    android:text="Humidity"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:id="@+id/tv_humidtitle"
@@ -312,9 +312,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cpv_blockCount="100"
-                        app:cpv_blockScale="0.6"
+                        app:cpv_blockScale="0.7"
                         app:cpv_barColor="@color/colorPrimarySnowball"
-                        app:cpv_rimColor="@color/colorGraphBackSnowball"
+                        app:cpv_rimColor="@color/colorGraphBG"
                         app:cpv_rimWidth="6dp"
                         app:cpv_barWidth="6dp"
                         android:paddingLeft="7dp"
@@ -326,7 +326,8 @@
                         app:cpv_innerContourColor="#00FFFFFF"
                         android:background="#00FFFFFF"
                         app:cpv_innerContourSize="0dp"
-                        app:cpv_outerContourSize="0dp">
+                        app:cpv_outerContourSize="0dp"
+                        android:id="@+id/humid_graph">
 
                     </at.grabner.circleprogress.CircleProgressView>
 
@@ -361,7 +362,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorText"
+            android:background="@color/colorPrimarySnowball"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"></LinearLayout>
 
@@ -388,7 +389,7 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:text="@string/temp_curbrig_snowball"
+                    android:text="Illumination"
                     android:layout_width="match_parent"
                     android:id="@+id/tv_brighttitle"
                     android:textColor="@color/colorPrimarySnowball"
@@ -407,9 +408,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cpv_blockCount="100"
-                        app:cpv_blockScale="0.6"
+                        app:cpv_blockScale="0.7"
                         app:cpv_barColor="@color/colorPrimarySnowball"
-                        app:cpv_rimColor="@color/colorGraphBackSnowball"
+                        app:cpv_rimColor="@color/colorGraphBG"
                         app:cpv_rimWidth="6dp"
                         app:cpv_barWidth="6dp"
                         android:paddingLeft="7dp"
@@ -421,7 +422,8 @@
                         app:cpv_innerContourColor="#00FFFFFF"
                         android:background="#00FFFFFF"
                         app:cpv_innerContourSize="0dp"
-                        app:cpv_outerContourSize="0dp">
+                        app:cpv_outerContourSize="0dp"
+                        android:id="@+id/illum_graph">
 
                     </at.grabner.circleprogress.CircleProgressView>
 
@@ -453,7 +455,7 @@
                 android:orientation="vertical"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorText"
+                android:background="@color/colorPrimarySnowball"
                 android:layout_marginBottom="15dp"></LinearLayout>
 
             <LinearLayout
@@ -471,7 +473,7 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:text="@string/temp_cursound_snowball"
+                    android:text="Noise Level"
                     android:layout_width="match_parent"
                     android:id="@+id/tv_soundtitle"
                     android:textColor="@color/colorPrimarySnowball"
@@ -490,9 +492,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cpv_blockCount="100"
-                        app:cpv_blockScale="0.6"
+                        app:cpv_blockScale="0.7"
                         app:cpv_barColor="@color/colorPrimarySnowball"
-                        app:cpv_rimColor="@color/colorGraphBackSnowball"
+                        app:cpv_rimColor="@color/colorGraphBG"
                         app:cpv_rimWidth="6dp"
                         app:cpv_barWidth="6dp"
                         android:paddingLeft="7dp"
@@ -504,7 +506,8 @@
                         app:cpv_innerContourColor="#00FFFFFF"
                         android:background="#00FFFFFF"
                         app:cpv_innerContourSize="0dp"
-                        app:cpv_outerContourSize="0dp">
+                        app:cpv_outerContourSize="0dp"
+                        android:id="@+id/noise_graph">
 
                     </at.grabner.circleprogress.CircleProgressView>
 
@@ -521,14 +524,14 @@
                 </FrameLayout>
 
                 <TextView
+                    android:text="12.00 dB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_soundVal"
                     android:textColor="@color/colorPrimarySnowball"
                     android:gravity="center_horizontal"
                     android:textSize="30sp"
-                    android:layout_weight="1"
-                    android:text="12.00 dB" />
+                    android:layout_weight="1" />
 
             </LinearLayout>
         </LinearLayout>

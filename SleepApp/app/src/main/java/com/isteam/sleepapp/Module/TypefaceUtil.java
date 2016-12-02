@@ -34,7 +34,7 @@ public class TypefaceUtil {
         }
 
         if(typeface_5 == null) {
-            typeface_5 = Typeface.createFromAsset(mContext.getAssets(), "fonts/yoon350.ttf");
+            typeface_5 = Typeface.createFromAsset(mContext.getAssets(), "fonts/yoon360.ttf");
         }
     }
 }

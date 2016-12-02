@@ -54,7 +54,7 @@
 
             <ImageButton
                 android:layout_width="wrap_content"
-                app:srcCompat="@drawable/main_button1"
+                app:srcCompat="@drawable/snowball_button1"
                 android:id="@+id/imageButton"
                 android:layout_weight="1"
                 android:background="@color/colorBackgroundSnowball"
@@ -64,12 +64,12 @@
                 android:paddingRight="5dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:src="@drawable/main_button1"
+                android:src="@drawable/snowball_button1"
                 android:tint="@android:color/darker_gray" />
 
             <ImageButton
                 android:layout_width="wrap_content"
-                app:srcCompat="@drawable/main_button2"
+                app:srcCompat="@drawable/snowball_button2"
                 android:id="@+id/imageButton2"
                 android:layout_weight="1"
                 android:background="@color/colorBackgroundSnowball"
@@ -79,12 +79,12 @@
                 android:paddingRight="5dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:src="@drawable/main_button2"
+                android:src="@drawable/snowball_button2"
                 android:tint="@android:color/darker_gray" />
 
             <ImageButton
                 android:layout_width="wrap_content"
-                app:srcCompat="@drawable/main_button3"
+                app:srcCompat="@drawable/snowball_button3"
                 android:id="@+id/imageButton3"
                 android:layout_weight="1"
                 android:background="@color/colorBackgroundSnowball"
@@ -95,12 +95,12 @@
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 android:clickable="false"
-                android:src="@drawable/main_button3"
+                android:src="@drawable/snowball_button3"
                 android:tint="@android:color/darker_gray" />
 
             <ImageButton
                 android:layout_width="wrap_content"
-                app:srcCompat="@drawable/main_button4"
+                app:srcCompat="@drawable/snowball_button4"
                 android:id="@+id/imageButton4"
                 android:layout_weight="1"
                 android:background="@color/colorBackgroundSnowball"
@@ -110,7 +110,7 @@
                 android:paddingRight="5dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:src="@drawable/main_button4"
+                android:src="@drawable/snowball_button4"
                 android:tint="@color/colorPrimarySnowball"
                 android:clickable="false" />
 
@@ -165,7 +165,8 @@
                 android:layout_weight="1"
                 android:visibility="visible"
                 android:paddingLeft="4dp"
-                android:paddingRight="4dp" />
+                android:paddingRight="4dp"
+                android:tint="@color/colorPrimarySnowball" />
 
         </LinearLayout>
 
