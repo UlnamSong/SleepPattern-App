@@ -32,14 +32,22 @@ public class SleepMonitorDetailActivity extends AppCompatActivity {
     private ImageButton button3 = null;
     private ImageButton button4 = null;
 
+    private ImageButton resultButton = null;
+
     private TextView tvTitle = null;
     private TextView textView = null;
+
+    // Toss and Turn Value
+    private int moving_value = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TypefaceUtil.loadTypeface(SleepMonitorDetailActivity.this);
         setContentView(R.layout.activity_sleep_monitor_detail_snowball);
+
+        Intent intent = getIntent();
+        moving_value = intent.getIntExtra("moving_value", 0);
 
         // Lollipop 이상 버전에서의 상단바 아이콘 색상 문제
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -58,9 +66,21 @@ public class SleepMonitorDetailActivity extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.colorBackgroundSnowball));
         }
 
+        // Set Content
         setContent();
 
-        setSleepConditionImage(SLEEP_VERY_NICE);
+        // Image settings based on tripping values
+        if(moving_value > 90) {
+            setSleepConditionImage(SLEEP_VERY_BAD);
+        } else if(moving_value > 70) {
+            setSleepConditionImage(SLEEP_BAD);
+        } else if(moving_value > 30) {
+            setSleepConditionImage(SLEEP_NORMAL);
+        } else if(moving_value > 10) {
+            setSleepConditionImage(SLEEP_GOOD);
+        } else {
+            setSleepConditionImage(SLEEP_VERY_NICE);
+        }
 
 
         // Bluetooth Button
@@ -90,14 +110,24 @@ public class SleepMonitorDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        resultButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SleepMonitorDetailActivity.this, TrippingActivity.class));
+                overridePendingTransition(R.anim.fade, R.anim.hold);
+                finish();
+            }
+        });
     }
 
     private void setContent() {
         sleep_condition = (ImageView) findViewById(R.id.condition_image);
         sleep_condition_explain = (ImageView) findViewById(R.id.iv_sleep_detail);
+        resultButton = (ImageButton) findViewById(R.id.result_btn);
 
         tvTitle = (TextView) findViewById(R.id.tv_title);
-        textView = (TextView) findViewById(R.id.textView);
+        textView = (TextView) findViewById(R.id.tvMainTitle);
 
         tvTitle.setTypeface(TypefaceUtil.typeface_1);
         textView.setTypeface(TypefaceUtil.typeface_1);

@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.isteam.sleepapp.Activity.SleepMonitorActivity"
+    tools:context="com.isteam.sleepapp.Activity.ConditionDetailActivity"
     android:background="@color/colorBackgroundSnowball"
     android:padding="0dp">
 
@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:id="@+id/tv_title"
-        android:textColor="@color/colorPrimarySnowball"
-        android:text="My Sleep Condition"
+        android:textColor="@color/colorDetailPrimary"
+        android:text="My Sleep Condition Insights"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:textSize="16sp"
@@ -30,7 +30,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimarySnowball"
+        android:background="@color/colorDetailPrimary"
         android:id="@+id/title_bar"
         android:layout_below="@+id/tv_title"
         android:layout_alignParentStart="true"></LinearLayout>
@@ -54,7 +54,7 @@
 
             <ImageButton
                 android:layout_width="wrap_content"
-                app:srcCompat="@drawable/snowball_button1"
+                app:srcCompat="@drawable/detail_exit"
                 android:id="@+id/imageButton"
                 android:layout_weight="1"
                 android:background="@color/colorBackgroundSnowball"
@@ -64,12 +64,12 @@
                 android:paddingRight="5dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:src="@drawable/snowball_button1"
+                android:src="@drawable/detail_exit"
                 android:tint="@android:color/darker_gray" />
 
             <ImageButton
                 android:layout_width="wrap_content"
-                app:srcCompat="@drawable/snowball_button2"
+                app:srcCompat="@drawable/detail_tripping"
                 android:id="@+id/imageButton2"
                 android:layout_weight="1"
                 android:background="@color/colorBackgroundSnowball"
@@ -79,12 +79,13 @@
                 android:paddingRight="5dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:src="@drawable/snowball_button2"
-                android:tint="@android:color/darker_gray" />
+                android:src="@drawable/detail_tripping"
+                android:tint="@color/colorDetailPrimary"
+                android:clickable="false" />
 
             <ImageButton
                 android:layout_width="wrap_content"
-                app:srcCompat="@drawable/snowball_button3"
+                app:srcCompat="@drawable/detail_breathe"
                 android:id="@+id/imageButton3"
                 android:layout_weight="1"
                 android:background="@color/colorBackgroundSnowball"
@@ -94,13 +95,12 @@
                 android:paddingRight="5dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:clickable="false"
-                android:src="@drawable/snowball_button3"
+                android:src="@drawable/detail_breathe"
                 android:tint="@android:color/darker_gray" />
 
             <ImageButton
                 android:layout_width="wrap_content"
-                app:srcCompat="@drawable/snowball_button4"
+                app:srcCompat="@drawable/detail_heartbeat"
                 android:id="@+id/imageButton4"
                 android:layout_weight="1"
                 android:background="@color/colorBackgroundSnowball"
@@ -110,9 +110,8 @@
                 android:paddingRight="5dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:src="@drawable/snowball_button4"
-                android:clickable="false"
-                android:tint="@color/colorPrimarySnowball" />
+                android:src="@drawable/detail_heartbeat"
+                android:tint="@android:color/darker_gray" />
 
         </LinearLayout>
 
@@ -143,9 +142,10 @@
                 app:srcCompat="@drawable/bar"
                 android:id="@+id/imageView3"
                 android:layout_weight="1"
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:paddingLeft="4dp"
-                android:paddingRight="4dp" />
+                android:paddingRight="4dp"
+                android:tint="@color/colorDetailPrimary" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -163,7 +163,7 @@
                 app:srcCompat="@drawable/bar"
                 android:id="@+id/imageView5"
                 android:layout_weight="1"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:tint="@color/colorPrimarySnowball" />
@@ -173,7 +173,7 @@
     </LinearLayout>
 
     <TextView
-        android:text="Last Sleep"
+        android:text="총 디텍팅 횟수 대비 움직임 횟수"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_bar"
@@ -181,31 +181,10 @@
         android:layout_marginTop="15dp"
         android:id="@+id/tvMainTitle"
         android:textSize="18sp"
-        android:textColor="@color/colorPrimarySnowball" />
+        android:textColor="@color/colorDetailPrimary" />
 
 
     <!-- 그래프 시작 -->
-    <FrameLayout
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_below="@+id/tvMainTitle"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp">
-
-        <ImageView
-            android:src="@drawable/very_bad"
-            android:background="#00FFFFFF"
-            android:id="@+id/condition_image"
-            android:layout_width="170dp"
-            android:scaleType="fitCenter"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="180dp">
-
-        </ImageView>
-
-    </FrameLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -219,39 +198,117 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/valueLayout"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/tvMainTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/grid_snowball"
-        android:layout_height="180dp"
-        android:paddingTop="25dp"
-        android:paddingBottom="25dp">
+        android:id="@+id/linearLayout5">
 
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/start_button"
-            android:id="@+id/start_stop_btn"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:src="@drawable/start_button"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:scaleType="fitCenter" />
+        <TextView
+            android:text="30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewValue1"
+            android:layout_below="@+id/tvMainTitle"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorDetailPrimary"
+            android:textSize="35sp"
+            android:gravity="center_horizontal" />
 
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/result_button"
-            android:id="@+id/result_btn"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:src="@drawable/result_button"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:scaleType="fitCenter" />
+        <TextView
+            android:text="/"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewValue2"
+            android:layout_below="@+id/tvMainTitle"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="25sp"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+
+        <TextView
+            android:text="100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewValue3"
+            android:layout_below="@+id/tvMainTitle"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="25sp"
+            android:gravity="center_horizontal"
+            android:layout_marginRight="3dp" />
+
+        <TextView
+            android:text="times"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewValue4"
+            android:layout_below="@+id/tvMainTitle"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="25sp"
+            android:gravity="center_horizontal" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tvGraphTitle"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:text="총 디텍팅 횟수 대비 움직임 %"
+        android:textColor="@color/colorDetailPrimary"
+        android:textSize="15sp" />
+
+    <FrameLayout
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/tvGraphTitle"
+        android:layout_alignParentStart="true">
+
+        <at.grabner.circleprogress.CircleProgressView
+            android:layout_height="160dp"
+            app:cpv_blockCount="100"
+            app:cpv_blockScale="0.7"
+            app:cpv_barColor="@color/colorDetailPrimary"
+            app:cpv_rimColor="@color/colorGraphBG"
+            app:cpv_rimWidth="6dp"
+            app:cpv_barWidth="6dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            app:cpv_textSize="0dp"
+            app:cpv_outerContourColor="#00FFFFFF"
+            app:cpv_innerContourColor="#00FFFFFF"
+            android:background="#00FFFFFF"
+            app:cpv_innerContourSize="0dp"
+            app:cpv_outerContourSize="0dp"
+            android:id="@+id/moving_graph"
+            android:layout_width="160dp"
+            android:layout_gravity="center_horizontal">
+
+        </at.grabner.circleprogress.CircleProgressView>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:text="30%"
+            android:textColor="@color/colorDetailPrimary"
+            android:id="@+id/tvGraphValue"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="#00FFFFFF"
+            android:textAlignment="center"
+            android:textSize="50sp" />
+
+    </FrameLayout>
 
 </RelativeLayout>

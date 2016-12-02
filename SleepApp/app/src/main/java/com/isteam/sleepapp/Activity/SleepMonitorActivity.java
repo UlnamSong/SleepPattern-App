@@ -33,6 +33,9 @@ public class SleepMonitorActivity extends AppCompatActivity {
     private boolean isStarted = false;
     private int touchCount = 0;
 
+    // Received Value by Bluetooth
+    private int moving_value = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +95,7 @@ public class SleepMonitorActivity extends AppCompatActivity {
             }
         });
 
+        // Result Button
         result_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,8 +106,9 @@ public class SleepMonitorActivity extends AppCompatActivity {
                         Toast.makeText(SleepMonitorActivity.this, "No Data! Detection First!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-
-                    startActivity(new Intent(SleepMonitorActivity.this, SleepMonitorDetailActivity.class));
+                    Intent intent = new Intent(SleepMonitorActivity.this, SleepMonitorDetailActivity.class);
+                    intent.putExtra("moving_value", moving_value);
+                    startActivity(intent);
                     overridePendingTransition(R.anim.fade, R.anim.hold);
                     finish();
                 }
@@ -157,7 +162,7 @@ public class SleepMonitorActivity extends AppCompatActivity {
 
 
         tvTitle = (TextView) findViewById(R.id.tv_title);
-        textView = (TextView) findViewById(R.id.textView);
+        textView = (TextView) findViewById(R.id.tvMainTitle);
 
         tvTitle.setTypeface(TypefaceUtil.typeface_1);
         textView.setTypeface(TypefaceUtil.typeface_1);

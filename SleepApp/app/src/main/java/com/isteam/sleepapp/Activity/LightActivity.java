@@ -90,7 +90,7 @@ public class LightActivity extends AppCompatActivity {
         myLightLux.setTypeface(TypefaceUtil.typeface_2);
 
         tvTitle = (TextView) findViewById(R.id.tv_title);
-        textView = (TextView) findViewById(R.id.textView);
+        textView = (TextView) findViewById(R.id.tvMainTitle);
 
         tvTitle.setTypeface(TypefaceUtil.typeface_1);
         textView.setTypeface(TypefaceUtil.typeface_2);

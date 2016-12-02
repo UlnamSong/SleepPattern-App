@@ -11,4 +11,6 @@
     <color name="colorPrimarySnowball">#9e7cff</color>
     <color name="colorGraphBackSnowball">#525252</color>
     <color name="colorBackgroundSnowball">#343434</color>
+
+    <color name="colorDetailPrimary">#ffb77c</color>
 </resources>
