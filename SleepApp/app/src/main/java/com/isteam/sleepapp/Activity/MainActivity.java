@@ -1,41 +1,24 @@
 package com.isteam.sleepapp.Activity;
 
-import android.Manifest;
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
-import android.bluetooth.le.BluetoothLeScanner;
-import android.bluetooth.le.ScanCallback;
-import android.bluetooth.le.ScanResult;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
-import android.os.Build;
-import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isteam.sleepapp.Bluetooth.BluetoothLeService;
-import com.isteam.sleepapp.Bluetooth.LeDeviceListAdapter;
 import com.isteam.sleepapp.Module.TypefaceUtil;
 import com.isteam.sleepapp.R;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -122,12 +105,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case REQUEST_BLE_DEVICE:
                 if (resultCode == DeviceScanDialogActivity.RESPONSE_BLE_DEVICE) {
+                    Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : OK Bluetooth get device");
                     Intent result = data;
                     BluetoothDevice device = (BluetoothDevice)data.getParcelableExtra("device");
                     mDeviceName = device.getName();
                     mDeviceAddress = device.getAddress();
                     Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
                     bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+                    Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : Start Service Bind");
                 } else {
 
                 }
@@ -139,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ib_connect:
-                startActivity(new Intent(this, DeviceScanDialogActivity.class));
+                startActivityForResult(new Intent(this, DeviceScanDialogActivity.class), REQUEST_BLE_DEVICE);
                 break;
 
             case R.id.ib_light:

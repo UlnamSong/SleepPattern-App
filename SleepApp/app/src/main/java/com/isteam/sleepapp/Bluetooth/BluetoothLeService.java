@@ -155,12 +155,14 @@ public class BluetoothLeService extends Service {
 
     public class LocalBinder extends Binder {
         public BluetoothLeService getService() {
+            Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName());
             return BluetoothLeService.this;
         }
     }
 
     @Override
     public IBinder onBind(Intent intent) {
+        Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName());
         return mBinder;
     }
 
@@ -169,6 +171,7 @@ public class BluetoothLeService extends Service {
         // After using a given device, you should make sure that BluetoothGatt.close() is called
         // such that resources are cleaned up properly.  In this particular example, close() is
         // invoked when the UI is disconnected from the Service.
+        Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName());
         close();
         return super.onUnbind(intent);
     }
