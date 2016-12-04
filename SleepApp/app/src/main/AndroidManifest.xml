@@ -43,6 +43,7 @@
         <activity android:name=".Activity.TrippingActivity" />
         <activity android:name=".Activity.DeviceScanDialogActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog"></activity>
+        <service android:name=".Bluetooth.BluetoothLeService" android:enabled="true"/>
     </application>
 
 </manifest>

@@ -141,15 +141,17 @@ public class BluetoothLeService extends Service {
             Log.d(TAG, String.format("Received heart rate: %d", heartRate));
             intent.putExtra(EXTRA_DATA, String.valueOf(heartRate));
         } else {
-            // For all other profiles, writes the data formatted in HEX.
+            Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : BroadCast Data");
             final byte[] data = characteristic.getValue();
             if (data != null && data.length > 0) {
                 final StringBuilder stringBuilder = new StringBuilder(data.length);
-                for(byte byteChar : data)
-                    stringBuilder.append(String.format("%02X ", byteChar));
-                intent.putExtra(EXTRA_DATA, new String(data) + "\n" + stringBuilder.toString());
+                for (byte byteChar : data) {
+                    stringBuilder.append(String.valueOf(byteChar));
+                }
+                intent.putExtra("data", stringBuilder.toString());
             }
         }
+        Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : " + characteristic);
         sendBroadcast(intent);
     }
 
@@ -213,10 +215,10 @@ public class BluetoothLeService extends Service {
      *         {@code BluetoothGattCallback#onConnectionStateChange(android.bluetooth.BluetoothGatt, int, int)}
      *         callback.
      */
-    public boolean connect(final String address) {
+    public BluetoothGatt connect(final String address) {
         if (mBluetoothAdapter == null || address == null) {
             Log.w(TAG, "BluetoothAdapter not initialized or unspecified address.");
-            return false;
+            return null;
         }
 
         // Previously connected device.  Try to reconnect.
@@ -225,16 +227,16 @@ public class BluetoothLeService extends Service {
             Log.d(TAG, "Trying to use an existing mBluetoothGatt for connection.");
             if (mBluetoothGatt.connect()) {
                 mConnectionState = STATE_CONNECTING;
-                return true;
+                return mBluetoothGatt;
             } else {
-                return false;
+                return null;
             }
         }
 
         final BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
         if (device == null) {
             Log.w(TAG, "Device not found.  Unable to connect.");
-            return false;
+            return null;
         }
         // We want to directly connect to the device, so we are setting the autoConnect
         // parameter to false.
@@ -242,7 +244,7 @@ public class BluetoothLeService extends Service {
         Log.d(TAG, "Trying to create a new connection.");
         mBluetoothDeviceAddress = address;
         mConnectionState = STATE_CONNECTING;
-        return true;
+        return mBluetoothGatt;
     }
 
     /**
@@ -283,6 +285,7 @@ public class BluetoothLeService extends Service {
             Log.w(TAG, "BluetoothAdapter not initialized");
             return;
         }
+        Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " + " + characteristic);
         mBluetoothGatt.readCharacteristic(characteristic);
     }
 
@@ -320,4 +323,9 @@ public class BluetoothLeService extends Service {
 
         return mBluetoothGatt.getServices();
     }
+
+    public void writeCharacteristic(BluetoothGattCharacteristic characteristic) {
+        mBluetoothGatt.writeCharacteristic(characteristic);
+    }
+
 }
