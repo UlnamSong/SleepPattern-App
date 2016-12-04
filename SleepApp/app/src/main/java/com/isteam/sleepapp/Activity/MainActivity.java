@@ -26,16 +26,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int REQUEST_BLE_DEVICE = 2;
 
-    private BluetoothAdapter mBluetoothAdapter;
-
     private ImageButton button1 = null;
     private ImageButton button2 = null;
     private ImageButton button3 = null;
     private ImageButton button4 = null;
 
+
+
     private String mDeviceName;
     private String mDeviceAddress;
     private BluetoothLeService mBluetoothLeService;
+    private BluetoothAdapter mBluetoothAdapter;
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
@@ -105,14 +106,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case REQUEST_BLE_DEVICE:
                 if (resultCode == DeviceScanDialogActivity.RESPONSE_BLE_DEVICE) {
-                    Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : OK Bluetooth get device");
+                    Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : OK Bluetooth get device");
                     Intent result = data;
                     BluetoothDevice device = (BluetoothDevice)data.getParcelableExtra("device");
                     mDeviceName = device.getName();
                     mDeviceAddress = device.getAddress();
                     Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
                     bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
-                    Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : Start Service Bind");
+                    Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : Start Service Bind");
                 } else {
 
                 }

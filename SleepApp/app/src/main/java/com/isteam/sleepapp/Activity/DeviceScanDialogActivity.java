@@ -101,7 +101,7 @@ public class DeviceScanDialogActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //Toast.makeText(getApplicationContext(), mLeDeviceListAdapter.getDevice(i).toString(), Toast.LENGTH_SHORT).show();
-                Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : " + mLeDeviceListAdapter.getDevice(i).toString());
+                Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : " + mLeDeviceListAdapter.getDevice(i).toString());
                 Intent result = new Intent();
                 result.putExtra("device", mLeDeviceListAdapter.getDevice(i));
                 setResult(RESPONSE_BLE_DEVICE, result);
@@ -127,7 +127,7 @@ public class DeviceScanDialogActivity extends AppCompatActivity {
         mLeDeviceListAdapter = new LeDeviceListAdapter(getApplicationContext());
         deviceListView.setAdapter(mLeDeviceListAdapter);
         startScan(true);
-        Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : Start Scan");
+        Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : Start Scan");
     }
 
     @Override
@@ -159,10 +159,10 @@ public class DeviceScanDialogActivity extends AppCompatActivity {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             mBluetoothLeScanner.stopScan(scanCallback);
                         }
-                        Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : Stop Scan");
+                        Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : Stop Scan");
                     }
                 }, SCAN_PERIOD);
-                Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : run Scan");
+                Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : run Scan");
                 mScanning = true;
                 mBluetoothLeScanner.startScan(scanCallback);
 
@@ -196,7 +196,7 @@ public class DeviceScanDialogActivity extends AppCompatActivity {
                 @Override
                 public void onScanResult(int callbackType, final ScanResult result) {
                     super.onScanResult(callbackType, result);
-                    Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : onScanResult");
+                    Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : onScanResult");
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -204,7 +204,7 @@ public class DeviceScanDialogActivity extends AppCompatActivity {
                                 mLeDeviceListAdapter.addDevice(result.getDevice());
                             }
                             mLeDeviceListAdapter.notifyDataSetChanged();
-                            Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : addDevice");
+                            Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : addDevice");
                         }
                     });
                 }
@@ -212,26 +212,26 @@ public class DeviceScanDialogActivity extends AppCompatActivity {
                 @Override
                 public void onBatchScanResults(List<ScanResult> results) {
                     super.onBatchScanResults(results);
-                    Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : onBatchScanResults");
+                    Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : onBatchScanResults");
                 }
 
                 @Override
                 public void onScanFailed(int errorCode) {
                     super.onScanFailed(errorCode);
-                    Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : onScanFailed");
+                    Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : onScanFailed");
                 }
             };
         } else {
             mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
                 @Override
                 public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
-                    Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : onLeScan");
+                    Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : onLeScan");
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             mLeDeviceListAdapter.addDevice(device);
                             mLeDeviceListAdapter.notifyDataSetChanged();
-                            Log.d(TAG, Thread.currentThread().getStackTrace()[1].getMethodName() + " : addDevice");
+                            Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : addDevice");
                         }
                     });
                 }
