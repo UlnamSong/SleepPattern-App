@@ -172,7 +172,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 overridePendingTransition(R.anim.fade, R.anim.hold);
                 finish();
                 */
-                callSendMessage(CMD_REQ_LIGHT_FULL);
+
+                if(mConnected) {
+                    callSendMessage(CMD_REQ_LIGHT_FULL);
+                } else {
+                    Toast.makeText(this, "블루투스를 연결하세요.", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.ib_sleep:
@@ -184,12 +189,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //mBluetoothLeService.readCharacteristic(bluetoothGattCharacteristic);
 //                callSendMessage(CMD_REQ_LIGHT_FULL);
 
-                callSendMessage(CMD_REQ_ROOM_CONDITION);
-//
-                // 자기꺼 받아오는 코드
-                if (bluetoothGattCharacteristic != null) {
-                    Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : " + bluetoothGattCharacteristic);
-                    mBluetoothLeService.readCharacteristic(bluetoothGattCharacteristic);
+                if(mConnected) {
+                    callSendMessage(CMD_REQ_ROOM_CONDITION);
+                    
+                    if (bluetoothGattCharacteristic != null) {
+                        Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : " + bluetoothGattCharacteristic);
+                        mBluetoothLeService.readCharacteristic(bluetoothGattCharacteristic);
+                    }
+                } else {
+                    Toast.makeText(this, "블루투스를 연결하세요.", Toast.LENGTH_SHORT).show();
                 }
 
                 break;
@@ -200,7 +208,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 overridePendingTransition(R.anim.fade, R.anim.hold);
                 finish();
                 */
-                callSendMessage(CMD_REQ_LIGHT_NO);
+                if(mConnected) {
+                    callSendMessage(CMD_REQ_LIGHT_NO);
+                } else {
+                    Toast.makeText(this, "블루투스를 연결하세요.", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
