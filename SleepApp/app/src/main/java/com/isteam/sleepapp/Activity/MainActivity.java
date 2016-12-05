@@ -378,7 +378,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
-
     }
 
     private ArrayList<Integer> getTemperateTwoBytesWithInteger ( int s_temper ){

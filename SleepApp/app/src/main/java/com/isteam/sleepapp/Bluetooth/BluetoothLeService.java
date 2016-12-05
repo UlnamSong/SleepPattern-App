@@ -170,16 +170,30 @@ public class BluetoothLeService extends Service {
         } else {
 
             Log.d(TAG, "BluetoothLeService : broadcastUpdate: " + "Method Start");
-
-            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(UUID.fromString(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
-            descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-
-            mBluetoothGatt.writeDescriptor(descriptor);
-
             BluetoothGattService service = characteristic.getService();
-            Log.d(TAG, "BluetoothLeService.setCharacteristicNotification(2)   service: " + service );
 
-            if (service == null) return;
+            if (mBluetoothGatt.setCharacteristicNotification(characteristic, true)) {
+                BluetoothGattDescriptor descriptor = characteristic.getDescriptor(UUID.fromString(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
+                if (descriptor != null) {
+                    if ((characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_NOTIFY) != 0) {
+                        descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+                    } else if ((characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_INDICATE) != 0) {
+                        descriptor.setValue(BluetoothGattDescriptor.ENABLE_INDICATION_VALUE);
+                    } else {
+                        // The characteristic does not have NOTIFY or INDICATE property set;
+                    }
+
+                    if (mBluetoothGatt.writeDescriptor(descriptor)) {
+                        // Success
+                    } else {
+                        // Failed to set client characteristic notification;
+                    }
+                } else {
+                    // Failed to set client characteristic notification;
+                }
+            } else {
+                // Failed to register notification;
+            }
 
 
             // For all other profiles, writes the data formatted in HEX.
