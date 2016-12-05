@@ -178,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
                 */
                 //mBluetoothLeService.readCharacteristic(bluetoothGattCharacteristic);
+                //callSendMessage(CMD_REQ_MAT_STT);
                 if (bluetoothGattCharacteristic != null) {
                     Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : " + bluetoothGattCharacteristic);
                     mBluetoothLeService.readCharacteristic(bluetoothGattCharacteristic);
@@ -251,11 +252,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : discovered");
                 // Show all the supported services and characteristics on the user interface.
                 //displayGattServices(mBluetoothLeService.getSupportedGattServices());
-                callSendMessage(CMD_REQ_MOVEMENT_RST);
                 getGattServices(mBluetoothLeService.getSupportedGattServices());
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
+                for (byte b : intent.getByteArrayExtra("data")) {
+                    Log.d(TAG, b + "");
+                }
                 Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : available");
-                Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : " + intent.getStringExtra("data"));
+                Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : ");
             }
         }
     };

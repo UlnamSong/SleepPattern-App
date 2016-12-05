@@ -127,31 +127,20 @@ public class BluetoothLeService extends Service {
         // This is special handling for the Heart Rate Measurement profile.  Data parsing is
         // carried out as per profile specifications:
         // http://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_measurement.xml
-        if (UUID_HEART_RATE_MEASUREMENT.equals(characteristic.getUuid())) {
-            int flag = characteristic.getProperties();
-            int format = -1;
-            if ((flag & 0x01) != 0) {
-                format = BluetoothGattCharacteristic.FORMAT_UINT16;
-                Log.d(TAG, "Heart rate format UINT16.");
-            } else {
-                format = BluetoothGattCharacteristic.FORMAT_UINT8;
-                Log.d(TAG, "Heart rate format UINT8.");
+
+        Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : BroadCast Data");
+        final byte[] data = characteristic.getValue();
+        /*
+        if (data != null && data.length > 0) {
+            final StringBuilder stringBuilder = new StringBuilder(data.length);
+            for (byte byteChar : data) {
+                stringBuilder.append(String.valueOf(byteChar));
             }
-            final int heartRate = characteristic.getIntValue(format, 1);
-            Log.d(TAG, String.format("Received heart rate: %d", heartRate));
-            intent.putExtra(EXTRA_DATA, String.valueOf(heartRate));
-        } else {
-            Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : BroadCast Data");
-            final byte[] data = characteristic.getValue();
-            if (data != null && data.length > 0) {
-                final StringBuilder stringBuilder = new StringBuilder(data.length);
-                for (byte byteChar : data) {
-                    stringBuilder.append(String.valueOf(byteChar));
-                }
-                intent.putExtra("data", stringBuilder.toString());
-            }
+            intent.putExtra("data", stringBuilder.toString());
         }
         Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : " + characteristic);
+        */
+        intent.putExtra("data", data);
         sendBroadcast(intent);
     }
 
