@@ -107,14 +107,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             // Automatically connects to the device upon successful start-up initialization.
             Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : connect");
-            Toast.makeText(MainActivity.this, "블루투스가 연결되었습니다.", Toast.LENGTH_SHORT).show();
             mBluetoothGatt = mBluetoothLeService.connect(mDeviceAddress);
         }
 
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
             Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : disconnect");
-            Toast.makeText(MainActivity.this, "블루투스 연결이 끊어졌습니다.", Toast.LENGTH_SHORT).show();
             mBluetoothLeService = null;
         }
     };
@@ -263,11 +261,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             final String action = intent.getAction();
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
                 Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : connected");
+                Toast.makeText(MainActivity.this, "블루투스가 연결되었습니다.", Toast.LENGTH_SHORT).show();
                 mConnected = true;
                 //mBluetoothLeService.writeCharacteristic();
 
             } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
                 Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : disconnected");
+                Toast.makeText(MainActivity.this, "블루투스 연결이 끊어졌습니다.", Toast.LENGTH_SHORT).show();
                 mConnected = false;
 
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
@@ -283,7 +283,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 byte[] strBytes	= intent.getByteArrayExtra(BluetoothLeService.EXTRA_BYTESDATA);
                 //byte[] strBytes	= intent.getByteArrayExtra("data");
                 //String byteToString = new String(strBytes,0,strBytes.length);
-
 
                 Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : available");
                 Log.d(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + " : " + intent.getStringExtra("data"));
